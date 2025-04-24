@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import { ScrollProvider } from "./contexts/ScrollContext";
+import StarField from "./components/SpaceBackground";
+import MessageDisplay from "./components/MessageDisplay";
+import { motion } from "framer-motion";
+import { messages } from "./data/content";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <ScrollProvider>
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          background: "#0A0A0A",
+          overflow: "auto"
+        }}
+      >
+        <div style={{ height: "3000px" }}>
+          {" "}
+          {/* Scrollable container */}
+          <div style={{ position: "fixed", width: "100%", height: "100%" }}>
+            <Canvas camera={{ position: [0, 0, 1] }}>
+              <ambientLight intensity={0.1} />
+              <StarField />
+              <OrbitControls enableZoom={false} enablePan={false} />
+            </Canvas>
+          </div>
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              style={{
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                textAlign: "center",
+                pointerEvents: "none"
+              }}
+            >
+              <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>
+                Happy Birthday!
+              </h1>
+              <p style={{ fontSize: "1.5rem" }}>
+                Scroll to explore our universe
+              </p>
+            </motion.div>
+
+            {messages.map((message, index) => (
+              <MessageDisplay
+                key={index}
+                message={message.text}
+                scrollThreshold={message.scrollThreshold}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </ScrollProvider>
+  );
 }
 
-export default App
+export default App;
