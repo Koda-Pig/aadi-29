@@ -1,0 +1,12 @@
+.gallery {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: hsl(var(--dark-primary));
+  color: hsl(var(--light-primary));
+
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+}

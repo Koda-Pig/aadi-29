@@ -59,4 +59,4 @@ deployed here: https://happy-birthday-dila.netlify.app/
 
 ### TODO:
 
-1. add password protection
+1. add back password cookie storage
