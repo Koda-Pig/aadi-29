@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useScroll } from "../contexts/ScrollContext";
+import styles from "../styles/message-display.module.scss";
 
 interface MessageDisplayProps {
   message: string;
@@ -19,21 +20,9 @@ const MessageDisplay = ({ message, scrollThreshold }: MessageDisplayProps) => {
         scale: isVisible ? 1 : 0.8
       }}
       transition={{ duration: 0.5 }}
-      style={{
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        color: "white",
-        textAlign: "center",
-        pointerEvents: "none",
-        maxWidth: "80%",
-        padding: "2rem",
-        background: "rgba(0, 0, 0, 0.5)",
-        borderRadius: "1rem"
-      }}
+      className={styles.message_display}
     >
-      <p style={{ fontSize: "1.5rem", lineHeight: "1.6" }}>{message}</p>
+      <p>{message}</p>
     </motion.div>
   );
 };
