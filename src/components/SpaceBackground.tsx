@@ -9,8 +9,8 @@ const StarField = () => {
 
   // Generate random star positions
   const [positions] = useMemo(() => {
-    const positions = new Float32Array(5000 * 3);
-    const colors = new Float32Array(5000 * 3);
+    const positions = new Float32Array(1000 * 3);
+    const colors = new Float32Array(1000 * 3);
 
     for (let i = 0; i < positions.length; i += 3) {
       // Random position in a sphere
