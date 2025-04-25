@@ -87,7 +87,7 @@ function App() {
                 </div>
 
                 <div className={styles.footer}>
-                  <p>made with ❤️ by your fiancé</p>
+                  <p>made with ❤️ by your 'ua</p>
                 </div>
               </>
             }
