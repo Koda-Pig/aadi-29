@@ -44,13 +44,14 @@
     padding: 1.25rem 0.125rem 0.75rem;
     border-radius: 9in;
     overflow: clip;
-    background-color: var(--dark-secondary);
+    background-color: var(--dark-primary);
     border: 2px solid var(--light-primary);
+    cursor: pointer;
 
     svg {
       width: 34px;
       height: auto;
-      color: var(--light-primary);
+      color: var(--light-seco);
       animation: bounce 3s infinite;
       animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       transform: translateY(-10px);
