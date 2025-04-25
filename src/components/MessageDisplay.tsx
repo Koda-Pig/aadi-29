@@ -1,16 +1,13 @@
 import { motion } from "framer-motion";
 import { useScroll } from "../contexts/ScrollContext";
 import styles from "../styles/message-display.module.scss";
+import { Message } from "../types";
 
-interface MessageDisplayProps {
-  message: string;
-  index: number;
-}
-
-const MessageDisplay = ({ message, index }: MessageDisplayProps) => {
+const MessageDisplay = ({ message }: { message: Message }) => {
   const { scrollPosition } = useScroll();
   const isVisible =
-    scrollPosition >= index * 1000 && scrollPosition < (index + 1) * 1000;
+    scrollPosition >= message.scrollThreshold &&
+    scrollPosition < message.scrollThreshold + 1000;
 
   return (
     <motion.div
@@ -22,7 +19,7 @@ const MessageDisplay = ({ message, index }: MessageDisplayProps) => {
       transition={{ duration: 0.5 }}
       className={styles.message_display}
     >
-      <p>{message}</p>
+      <p>{message.text}</p>
     </motion.div>
   );
 };

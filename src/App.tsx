@@ -20,7 +20,15 @@ function App() {
       </div>
 
       {/* Scrollable content container */}
-      <div className={styles.scrollable_container}>
+      <div
+        className={styles.scrollable_container}
+        style={{
+          minHeight: messages.reduce(
+            (acc, message) => acc + message.scrollThreshold,
+            0
+          )
+        }}
+      >
         {/* Initial message */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -35,8 +43,8 @@ function App() {
         </motion.div>
 
         {/* Messages */}
-        {messages.map((message, index) => (
-          <MessageDisplay key={index} message={message.text} index={index} />
+        {messages.map((message) => (
+          <MessageDisplay key={message.scrollThreshold} message={message} />
         ))}
       </div>
     </ScrollProvider>
