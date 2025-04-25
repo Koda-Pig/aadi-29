@@ -11,12 +11,19 @@ const MessageDisplay = ({ message }: { message: Message }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 0, scale: 0.8, y: 50 }}
       animate={{
         opacity: isVisible ? 1 : 0,
-        scale: isVisible ? 1 : 0.8
+        scale: isVisible ? 1 : 0.8,
+        y: isVisible ? 0 : 50
       }}
-      transition={{ duration: 0.5 }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+        mass: 1,
+        opacity: { duration: 0.3 }
+      }}
       className={styles.message_display}
     >
       <p>{message.text}</p>
