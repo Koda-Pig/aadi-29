@@ -1,6 +1,7 @@
 .gallery {
-  min-height: 100vh;
-  padding: 2rem;
+  position: fixed;
+  inset: 0;
+  margin: 0;
   background-color: hsl(var(--dark-primary));
   color: hsl(var(--light-primary));
 
