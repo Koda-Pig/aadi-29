@@ -48,8 +48,7 @@ export default function Home() {
         <div
           className={styles.scrollable_container}
           style={{
-            minHeight:
-              messages.length * window.innerHeight + window.innerHeight * 2
+            minHeight: messages.length * window.innerHeight * 1.5
           }}
         >
           {/* Initial message */}
