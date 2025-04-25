@@ -7,7 +7,7 @@ const MessageDisplay = ({ message }: { message: Message }) => {
   const { scrollPosition } = useScroll();
   const isVisible =
     scrollPosition >= message.scrollThreshold &&
-    scrollPosition < message.scrollThreshold + 1000;
+    scrollPosition < message.scrollThreshold + window.innerHeight;
 
   return (
     <motion.div
@@ -18,6 +18,7 @@ const MessageDisplay = ({ message }: { message: Message }) => {
       }}
       transition={{ duration: 0.5 }}
       className={styles.message_display}
+      style={{ minHeight: "100vh" }}
     >
       <p>{message.text}</p>
     </motion.div>
