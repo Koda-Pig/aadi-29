@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import LoadingSpinner from "../components/LoadingSpinner";
 import styles from "../styles/gallery.module.scss";
 
@@ -19,7 +15,6 @@ const Gallery = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Load images from public/images directory
     const loadImages = async () => {
       try {
         const imageFiles = Array.from({ length: 32 }, (_, i) => ({
