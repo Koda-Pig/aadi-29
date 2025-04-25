@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
-import LoadingSpinner from "../components/LoadingSpinner";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import LoadingSpinner from "../components/LoadingSpinner";
 import styles from "../styles/gallery.module.scss";
 
 interface ImageData {
@@ -17,6 +19,8 @@ interface ImageData {
 const Gallery = () => {
   const [images, setImages] = useState<ImageData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const loadImages = async () => {
@@ -67,6 +71,11 @@ const Gallery = () => {
               className={styles.imageContainer}
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
+              onClick={() => {
+                setCurrentImageIndex(index);
+                setLightboxOpen(true);
+              }}
+              style={{ cursor: "pointer" }}
             >
               <img
                 src={image.src}
@@ -78,6 +87,14 @@ const Gallery = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <Lightbox
+        open={lightboxOpen}
+        close={() => setLightboxOpen(false)}
+        slides={images.map((img) => ({ src: img.src }))}
+        index={currentImageIndex}
+        styles={{ container: { backgroundColor: "rgba(0, 0, 0, 0.9)" } }}
+      />
     </div>
   );
 };

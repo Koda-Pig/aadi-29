@@ -22,11 +22,13 @@
     "maath": "^0.10.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-image-lightbox": "^5.1.4",
     "react-router-dom": "^7.5.2",
     "react-spring": "^9.7.5",
     "swiper": "^11.2.6",
     "three": "^0.176.0",
-    "uninstall": "^0.0.0"
+    "uninstall": "^0.0.0",
+    "yet-another-react-lightbox": "^3.23.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
