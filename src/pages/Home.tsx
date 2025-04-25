@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-// import { ScrollProvider } from "../contexts/ScrollContext";
 import StarField from "../components/SpaceBackground";
 import MessageDisplay from "../components/MessageDisplay";
 import { motion } from "framer-motion";
