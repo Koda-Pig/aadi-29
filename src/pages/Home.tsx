@@ -1,7 +1,4 @@
 import { useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import StarField from "../components/SpaceBackground";
 import MessageDisplay from "../components/MessageDisplay";
 import { motion } from "framer-motion";
 import { messages } from "../data/content";
@@ -21,14 +18,6 @@ export default function Home() {
 
   return (
     <>
-      <div className={styles.background}>
-        <Canvas camera={{ position: [0, 0, 1] }} className={styles.canvas}>
-          <ambientLight intensity={0.1} />
-          <StarField />
-          <OrbitControls enableZoom={false} enablePan={false} />
-        </Canvas>
-      </div>
-
       <>
         {/* Scrollable content container */}
         <div
