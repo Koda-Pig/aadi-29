@@ -6,6 +6,7 @@ import MessageDisplay from "./components/MessageDisplay";
 import { motion } from "framer-motion";
 import { messages } from "./data/content";
 import styles from "./styles/app.module.scss";
+import { ArrowDown } from "lucide-react";
 
 function App() {
   return (
@@ -35,7 +36,10 @@ function App() {
         >
           <div>
             <h1>happy birthday dearest 'dila 🤎</h1>
-            <p>Scroll to explore our universe</p>
+            <p>some of the things I love about you</p>
+            <div className={styles.arrow_down}>
+              <ArrowDown />
+            </div>
           </div>
         </motion.div>
 

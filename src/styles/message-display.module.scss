@@ -6,6 +6,8 @@
   display: flex;
   place-items: center;
   place-content: center;
+  pointer-events: none;
+  touch-action: pan-y;
 
   p {
     padding: 1rem 2rem;
