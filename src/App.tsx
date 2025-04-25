@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { ScrollProvider } from "./contexts/ScrollContext";
@@ -7,8 +8,30 @@ import { motion } from "framer-motion";
 import { messages } from "./data/content";
 import styles from "./styles/app.module.scss";
 import { ArrowDown } from "lucide-react";
+import { PasswordProtection } from "./components/PasswordProtection";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const authCookie = Cookies.get("celium_auth");
+    if (authCookie === process.env.NEXT_PUBLIC_PASS) {
+      setIsAuthenticated(true);
+    }
+    setIsLoading(false);
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <PasswordProtection onAuthenticated={() => setIsAuthenticated(true)} />
+    );
+  }
+
   return (
     <ScrollProvider>
       {/* Fixed background container */}
