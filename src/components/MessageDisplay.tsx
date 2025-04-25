@@ -4,13 +4,13 @@ import styles from "../styles/message-display.module.scss";
 
 interface MessageDisplayProps {
   message: string;
-  scrollThreshold: number;
+  index: number;
 }
 
-const MessageDisplay = ({ message, scrollThreshold }: MessageDisplayProps) => {
+const MessageDisplay = ({ message, index }: MessageDisplayProps) => {
   const { scrollPosition } = useScroll();
   const isVisible =
-    scrollPosition >= scrollThreshold && scrollPosition < scrollThreshold + 500;
+    scrollPosition >= index * 1000 && scrollPosition < (index + 1) * 1000;
 
   return (
     <motion.div

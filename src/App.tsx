@@ -36,11 +36,7 @@ function App() {
 
         {/* Messages */}
         {messages.map((message, index) => (
-          <MessageDisplay
-            key={index}
-            message={message.text}
-            scrollThreshold={index * 1500}
-          />
+          <MessageDisplay key={index} message={message.text} index={index} />
         ))}
       </div>
     </ScrollProvider>
