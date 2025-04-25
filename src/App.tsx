@@ -41,7 +41,7 @@ function App() {
               className={styles.arrow_down}
               onClick={() => {
                 window.scrollTo({
-                  top: window.innerHeight,
+                  top: window.innerHeight + window.innerHeight * 0.5,
                   behavior: "smooth"
                 });
               }}
