@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 import { random } from "maath";
+import { COLORS } from "../constants";
 
 const StarField = () => {
   const ref = useRef<THREE.Points>(null);
@@ -36,7 +37,7 @@ const StarField = () => {
       <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#ffffff"
+          color={COLORS.lightPrimary}
           size={0.002}
           sizeAttenuation={true}
           depthWrite={false}
