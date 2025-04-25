@@ -60,4 +60,3 @@ deployed here: https://happy-birthday-dila.netlify.app/
 ### TODO:
 
 1. add password protection
-2. fix issue where not all messages are visible
