@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "../styles/password-protection.module.scss";
 
 interface PasswordProtectionProps {
   onAuthenticated: () => void;
@@ -21,28 +22,26 @@ export function PasswordProtection({
   };
 
   return (
-    <div>
+    <div className={styles.password_protection}>
       <div>
-        <div>
-          <h1>Celium Prototype</h1>
-          <p>Please enter the password to continue</p>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <input
-              type="text"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setError(false);
-              }}
-              placeholder="Enter password"
-            />
-            {error && <div>Incorrect password</div>}
-          </div>
-          <button type="submit">Continue</button>
-        </form>
+        <h1>shhhhh, it's a secret</h1>
+        <p>enter the password to continue</p>
       </div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="text"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setError(false);
+            }}
+            placeholder="Enter password"
+          />
+          {error && <div>Incorrect password</div>}
+        </div>
+        <button type="submit">Continue</button>
+      </form>
     </div>
   );
 }
