@@ -1,15 +1,14 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useScroll, useTexture } from "@react-three/drei";
+import { useScroll, useTexture, useProgress } from "@react-three/drei";
 import * as THREE from "three";
 
-const ImagePlane = ({
-  position,
-  url
-}: {
+interface ImagePlaneProps {
   position: THREE.Vector3;
   url: string;
-}) => {
+}
+
+const ImagePlane = ({ position, url }: ImagePlaneProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const texture = useTexture(url);
   texture.wrapS = THREE.ClampToEdgeWrapping;
@@ -23,9 +22,18 @@ const ImagePlane = ({
   );
 };
 
-const ImageTunnel = () => {
+interface ImageTunnelProps {
+  onLoadProgress: (progress: number) => void;
+}
+
+const ImageTunnel = ({ onLoadProgress }: ImageTunnelProps) => {
   const groupRef = useRef<THREE.Group>(null);
   const scroll = useScroll();
+  const { progress } = useProgress();
+
+  useEffect(() => {
+    onLoadProgress(progress);
+  }, [progress, onLoadProgress]);
 
   useFrame(() => {
     if (!groupRef.current) return;
