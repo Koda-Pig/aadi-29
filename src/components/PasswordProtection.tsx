@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
-import { SHA256 } from "crypto-js";
 
 interface PasswordProtectionProps {
   onAuthenticated: () => void;
@@ -17,11 +16,10 @@ export function PasswordProtection({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const hash = SHA256(password).toString();
 
-    if (hash === import.meta.env.VITE_APP_PASSWORD) {
+    if (password === import.meta.env.VITE_APP_PASSWORD) {
       // Set cookie to expire in 30 minutes
-      Cookies.set(COOKIE_NAME, hash, {
+      Cookies.set(COOKIE_NAME, password, {
         expires: COOKIE_EXPIRY,
         sameSite: "Strict",
         secure: import.meta.env.NODE_ENV === "production"

@@ -15,17 +15,17 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const authCookie = Cookies.get("aadi-29_auth");
-  //   if (authCookie === import.meta.env.NEXT_PUBLIC_PASS) {
-  //     setIsAuthenticated(true);
-  //   }
-  //   setIsLoading(false);
-  // }, []);
+  useEffect(() => {
+    const authCookie = Cookies.get("aadi-29_auth");
+    if (authCookie === import.meta.env.NEXT_PUBLIC_PASS) {
+      setIsAuthenticated(true);
+    }
+    setIsLoading(false);
+  }, []);
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (!isAuthenticated) {
     return (
