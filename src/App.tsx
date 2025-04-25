@@ -9,56 +9,63 @@ import { messages } from "./data/content";
 function App() {
   return (
     <ScrollProvider>
+      {/* Fixed background container */}
       <div
         style={{
-          width: "100vw",
-          height: "100vh",
-          background: "#0A0A0A",
-          overflow: "auto"
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 0
         }}
       >
-        <div style={{ height: "3000px" }}>
-          {" "}
-          {/* Scrollable container */}
-          <div style={{ position: "fixed", width: "100%", height: "100%" }}>
-            <Canvas camera={{ position: [0, 0, 1] }}>
-              <ambientLight intensity={0.1} />
-              <StarField />
-              <OrbitControls enableZoom={false} enablePan={false} />
-            </Canvas>
-          </div>
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              style={{
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                color: "white",
-                textAlign: "center",
-                pointerEvents: "none"
-              }}
-            >
-              <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>
-                Happy Birthday!
-              </h1>
-              <p style={{ fontSize: "1.5rem" }}>
-                Scroll to explore our universe
-              </p>
-            </motion.div>
+        <Canvas camera={{ position: [0, 0, 1] }}>
+          <ambientLight intensity={0.1} />
+          <StarField />
+          <OrbitControls enableZoom={false} enablePan={false} />
+        </Canvas>
+      </div>
 
-            {messages.map((message, index) => (
-              <MessageDisplay
-                key={index}
-                message={message.text}
-                scrollThreshold={message.scrollThreshold}
-              />
-            ))}
-          </div>
-        </div>
+      {/* Scrollable content container */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          minHeight: "300vh", // Make it 3x the viewport height for scrolling
+          pointerEvents: "none"
+        }}
+      >
+        {/* Initial message */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            color: "white",
+            textAlign: "center",
+            width: "100%",
+            padding: "0 20px"
+          }}
+        >
+          <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>
+            Happy Birthday!
+          </h1>
+          <p style={{ fontSize: "1.5rem" }}>Scroll to explore our universe</p>
+        </motion.div>
+
+        {/* Messages */}
+        {messages.map((message, index) => (
+          <MessageDisplay
+            key={index}
+            message={message.text}
+            scrollThreshold={message.scrollThreshold}
+          />
+        ))}
       </div>
     </ScrollProvider>
   );
