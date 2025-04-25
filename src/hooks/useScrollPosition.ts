@@ -5,7 +5,7 @@ export const useScrollPosition = () => {
 
   useEffect(() => {
     const updatePosition = () => setScrollPosition(window.scrollY);
-    window.addEventListener("scroll", updatePosition);
+    window.addEventListener("scroll", updatePosition, { passive: true });
     updatePosition();
     return () => window.removeEventListener("scroll", updatePosition);
   }, []);

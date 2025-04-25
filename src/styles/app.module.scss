@@ -1,0 +1,30 @@
+.background {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+}
+
+.scrollable_container {
+  position: relative;
+  z-index: 1;
+  min-height: 300vh;
+  pointer-events: none;
+}
+
+.initial_message {
+  text-align: center;
+  height: 100%;
+  padding: 40px 20px;
+  display: flex;
+  place-items: center;
+  place-content: center;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+}

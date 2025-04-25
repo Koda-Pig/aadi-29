@@ -5,21 +5,13 @@ import StarField from "./components/SpaceBackground";
 import MessageDisplay from "./components/MessageDisplay";
 import { motion } from "framer-motion";
 import { messages } from "./data/content";
+import styles from "./styles/app.module.scss";
 
 function App() {
   return (
     <ScrollProvider>
       {/* Fixed background container */}
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          zIndex: 0
-        }}
-      >
+      <div className={styles.background}>
         <Canvas camera={{ position: [0, 0, 1] }}>
           <ambientLight intensity={0.1} />
           <StarField />
@@ -28,34 +20,18 @@ function App() {
       </div>
 
       {/* Scrollable content container */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          minHeight: "300vh", // Make it 3x the viewport height for scrolling
-          pointerEvents: "none"
-        }}
-      >
+      <div className={styles.scrollable_container}>
         {/* Initial message */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          style={{
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            color: "white",
-            textAlign: "center",
-            width: "100%",
-            padding: "0 20px"
-          }}
+          className={styles.initial_message}
         >
-          <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>
-            Happy Birthday!
-          </h1>
-          <p style={{ fontSize: "1.5rem" }}>Scroll to explore our universe</p>
+          <div>
+            <h1>Happy Birthday!</h1>
+            <p>Scroll to explore our universe</p>
+          </div>
         </motion.div>
 
         {/* Messages */}
