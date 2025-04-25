@@ -60,3 +60,51 @@
     transform: translateY(10px);
   }
 }
+
+.galleryLink {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 9in;
+    background-color: hsl(var(--dark-primary));
+    border: 2px solid hsl(var(--light-primary));
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: hsl(var(--light-primary));
+      p {
+        color: hsl(var(--dark-primary));
+      }
+    }
+
+    p {
+      color: hsl(var(--light-secondary));
+      font-size: 1.1rem;
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  text-align: center;
+
+  p {
+    color: hsl(var(--light-secondary));
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.8;
+  }
+}

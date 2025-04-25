@@ -35,7 +35,7 @@ function App() {
         className={styles.scrollable_container}
         style={{
           minHeight:
-            messages.length * window.innerHeight + window.innerHeight * 2
+            messages.length * window.innerHeight + window.innerHeight * 3
         }}
       >
         {/* Initial message */}
@@ -66,6 +66,16 @@ function App() {
         {messages.map((message) => (
           <MessageDisplay key={message.scrollThreshold} message={message} />
         ))}
+      </div>
+
+      <div className={styles.galleryLink}>
+        <a href="/gallery" target="_blank" rel="noopener noreferrer">
+          <p>view gallery</p>
+        </a>
+      </div>
+
+      <div className={styles.footer}>
+        <p>made with ❤️ by your fiancé</p>
       </div>
     </ScrollProvider>
   );
