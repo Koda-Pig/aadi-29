@@ -9,6 +9,7 @@ import { messages } from "./data/content";
 import styles from "./styles/app.module.scss";
 import { ArrowDown } from "lucide-react";
 import { PasswordProtection } from "./components/PasswordProtection";
+import Cookies from "js-cookie";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
