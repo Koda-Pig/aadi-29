@@ -8,13 +8,13 @@ const StarField = () => {
   const ref = useRef<THREE.Points>(null);
 
   // Generate random star positions
-  const [positions, colors] = useMemo(() => {
+  const [positions] = useMemo(() => {
     const positions = new Float32Array(5000 * 3);
     const colors = new Float32Array(5000 * 3);
 
     for (let i = 0; i < positions.length; i += 3) {
       // Random position in a sphere
-      random.inSphere(positions, { radius: 1.5, offset: [0, 0, 0] });
+      random.inSphere(positions, { radius: 1.5 });
 
       // Random color with slight variation
       colors[i] = 1; // R
