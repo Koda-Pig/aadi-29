@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Cookies from "js-cookie";
+import { SHA256 } from "crypto-js";
 
 interface PasswordProtectionProps {
   onAuthenticated: () => void;
@@ -14,25 +15,16 @@ export function PasswordProtection({
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Create a TextEncoder to convert the password to bytes
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password);
+    const hash = SHA256(password).toString();
 
-    // Use Web Crypto API to create a hash
-    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
-
-    if (hashHex === process.env.NEXT_PUBLIC_PASS) {
+    if (hash === import.meta.env.VITE_APP_PASSWORD) {
       // Set cookie to expire in 30 minutes
-      Cookies.set(COOKIE_NAME, hashHex, {
+      Cookies.set(COOKIE_NAME, hash, {
         expires: COOKIE_EXPIRY,
         sameSite: "Strict",
-        secure: process.env.NODE_ENV === "production"
+        secure: import.meta.env.NODE_ENV === "production"
       });
       onAuthenticated();
     } else {
@@ -50,7 +42,7 @@ export function PasswordProtection({
         <form onSubmit={handleSubmit}>
           <div>
             <input
-              type="password"
+              type="text"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
