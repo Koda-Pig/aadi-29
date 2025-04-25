@@ -53,6 +53,10 @@ export default tseslint.config({
 });
 ```
 
+### Deployment
+
+deployed here: https://happy-birthday-dila.netlify.app/
+
 ### TODO:
 
 1. add password protection

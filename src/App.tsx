@@ -37,9 +37,17 @@ function App() {
           <div>
             <h1>happy birthday dearest 'dila 🤎</h1>
             <p>some of the things I love about you</p>
-            <div className={styles.arrow_down}>
+            <button
+              className={styles.arrow_down}
+              onClick={() => {
+                window.scrollTo({
+                  top: window.innerHeight,
+                  behavior: "smooth"
+                });
+              }}
+            >
               <ArrowDown />
-            </div>
+            </button>
           </div>
         </motion.div>
 
