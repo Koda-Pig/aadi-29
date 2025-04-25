@@ -8,6 +8,8 @@
   place-content: center;
   pointer-events: none;
   touch-action: pan-y;
+  scroll-snap-align: start;
+  min-height: 100vh;
 
   p {
     padding: 1rem 2rem;

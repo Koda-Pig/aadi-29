@@ -21,12 +21,7 @@ function App() {
       </div>
 
       {/* Scrollable content container */}
-      <div
-        className={styles.scrollable_container}
-        style={{
-          minHeight: `${messages.length * 100 + 100}vh`
-        }}
-      >
+      <div className={styles.scrollable_container}>
         {/* Initial message */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

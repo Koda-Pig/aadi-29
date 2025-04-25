@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useScroll } from "../contexts/ScrollContext";
-import styles from "../styles/message-display.module.scss";
 import { Message } from "../types";
+import styles from "../styles/message-display.module.scss";
 
 const MessageDisplay = ({ message }: { message: Message }) => {
   const { scrollPosition } = useScroll();
@@ -18,7 +18,6 @@ const MessageDisplay = ({ message }: { message: Message }) => {
       }}
       transition={{ duration: 0.5 }}
       className={styles.message_display}
-      style={{ minHeight: "100vh" }}
     >
       <p>{message.text}</p>
     </motion.div>

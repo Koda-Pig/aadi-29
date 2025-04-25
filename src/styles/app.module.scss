@@ -9,6 +9,7 @@
   z-index: 1;
   min-height: 900vh;
   touch-action: pan-y;
+  scroll-snap-type: y mandatory;
 }
 
 .initial_message {
@@ -20,6 +21,7 @@
   display: flex;
   place-items: center;
   place-content: center;
+  scroll-snap-align: start;
 
   h1 {
     font-size: 3rem;
