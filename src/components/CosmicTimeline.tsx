@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, useScroll } from "@react-three/drei";
 import * as THREE from "three";
 import { random } from "maath";
+import FloatingImage from "./FloatingImage";
 
 const CosmicTimeline = () => {
   const timelineRef = useRef<THREE.Group>(null);
@@ -26,6 +27,31 @@ const CosmicTimeline = () => {
     );
     return curve;
   }, []);
+
+  // Generate image positions along the path
+  const imagePositions = useMemo(() => {
+    const positions: THREE.Vector3[] = [];
+    const rotations: [number, number, number][] = [];
+    const totalImages = 32;
+
+    for (let i = 0; i < totalImages; i++) {
+      const t = i / (totalImages - 1);
+      const position = path.getPoint(t);
+      const tangent = path.getTangent(t);
+
+      // Calculate rotation to face the camera while following path direction
+      const rotation: [number, number, number] = [
+        0,
+        Math.atan2(tangent.x, tangent.z),
+        0
+      ];
+
+      positions.push(position);
+      rotations.push(rotation);
+    }
+
+    return { positions, rotations };
+  }, [path]);
 
   // Generate star positions
   const [positions, colors] = useMemo(() => {
@@ -105,6 +131,17 @@ const CosmicTimeline = () => {
           blending={THREE.AdditiveBlending}
         />
       </mesh>
+
+      {/* Images */}
+      {Array.from({ length: 32 }, (_, i) => (
+        <FloatingImage
+          key={i}
+          src={`${i + 1}.webp`}
+          position={imagePositions.positions[i]}
+          rotation={imagePositions.rotations[i]}
+          scale={0.3}
+        />
+      ))}
     </group>
   );
 };
