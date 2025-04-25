@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MessageDisplay from "../components/MessageDisplay";
 import { motion } from "framer-motion";
 import { messages } from "../data/content";
@@ -9,6 +9,21 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY;
+      const clientHeight = document.documentElement.clientHeight;
+
+      // Show footer when we're near the bottom (within 100px)
+      setIsFooterVisible(scrollHeight - scrollTop - clientHeight < 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (!isAuthenticated) {
     return (
@@ -55,16 +70,24 @@ export default function Home() {
           {messages.map((message) => (
             <MessageDisplay key={message.scrollThreshold} message={message} />
           ))}
-        </div>
 
-        <div className={styles.galleryLink}>
-          <Link to="/gallery">
-            <p>view gallery</p>
-          </Link>
-        </div>
+          <div
+            className={`${styles.galleryLink} ${
+              isFooterVisible ? styles.visible : ""
+            }`}
+          >
+            <Link to="/gallery">
+              <p>view gallery</p>
+            </Link>
+          </div>
 
-        <div className={styles.footer}>
-          <p>made with ❤️ by your 'ua</p>
+          <div
+            className={`${styles.footer} ${
+              isFooterVisible ? styles.visible : ""
+            }`}
+          >
+            <p>made with ❤️ by your 'ua</p>
+          </div>
         </div>
       </>
     </>

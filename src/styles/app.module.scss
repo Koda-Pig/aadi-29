@@ -62,12 +62,18 @@
 }
 
 .galleryLink {
-  position: fixed;
-  bottom: 80px;
+  position: absolute;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
   text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.visible {
+    opacity: 1;
+  }
 
   a {
     text-decoration: none;
@@ -95,12 +101,18 @@
 }
 
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
   text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.visible {
+    opacity: 1;
+  }
 
   p {
     color: hsl(var(--light-secondary));
