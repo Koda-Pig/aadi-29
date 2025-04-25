@@ -1,27 +1,66 @@
 export interface Message {
   text: string;
-  scrollThreshold: number;
 }
 
 export const messages: Message[] = [
   {
-    text: "Every moment with you feels like a beautiful journey through the stars.",
-    scrollThreshold: 1000
+    text: "You're cute AF"
   },
   {
-    text: "Your smile brightens my universe more than any star ever could.",
-    scrollThreshold: 2000
+    text: "Drop-dead gorgeous in ways that take my breath away"
   },
   {
-    text: "In this vast cosmos, I'm grateful our paths crossed.",
-    scrollThreshold: 3000
+    text: "Your captivating blend of mystery and openness that keeps me hooked"
   },
   {
-    text: "You make my heart orbit around you like planets around their sun.",
-    scrollThreshold: 4000
+    text: "Fucking hilarious"
   },
   {
-    text: "Happy Birthday to the most beautiful star in my galaxy!",
-    scrollThreshold: 5000
+    text: "Fascinatingly intelligent"
+  },
+  {
+    text: "Your endless curiosity about the world and everything in it"
+  },
+  {
+    text: "Perfect curves in all the right places"
+  },
+  {
+    text: "You inspire and encourage me to become the best version of myself"
+  },
+  {
+    text: "Your unwavering principles and courage to defend what matters"
+  },
+  {
+    text: "Always down for adventures and new experiences"
+  },
+  {
+    text: "Mother to our nefarious children"
+  },
+  {
+    text: "Absolutely stunning from every angle, inside and out"
+  },
+  {
+    text: "Give outstanding head"
+  },
+  {
+    text: "Your unique perspective on the world"
+  },
+  {
+    text: "The way you care deeply about the people you love"
+  },
+  {
+    text: "Your honesty, even when it's hard to hear"
+  },
+  {
+    text: "Exceptionally good ass"
+  },
+  {
+    text: "Your brilliant mind and how you see connections others miss"
+  },
+  {
+    text: "How you transform any space into our sanctuary"
+  },
+  {
+    text: "Your mesmerizing eyes - deep pools of rich amber brown"
   }
 ];

@@ -39,7 +39,7 @@ function App() {
           <MessageDisplay
             key={index}
             message={message.text}
-            scrollThreshold={message.scrollThreshold}
+            scrollThreshold={index * 1500}
           />
         ))}
       </div>
