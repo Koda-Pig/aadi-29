@@ -4,10 +4,6 @@
   margin: 0;
 }
 
-.canvas {
-  background-color: var(--dark-secondary);
-}
-
 .scrollable_container {
   position: relative;
   z-index: 1;
@@ -29,12 +25,12 @@
   h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--light-primary);
+    color: hsl(var(--light-primary));
   }
 
   p {
     font-size: 1.5rem;
-    color: var(--light-secondary);
+    color: hsl(var(--light-secondary));
   }
 
   .arrow_down {
@@ -44,14 +40,14 @@
     padding: 1.25rem 0.125rem 0.75rem;
     border-radius: 9in;
     overflow: clip;
-    background-color: var(--dark-primary);
-    border: 2px solid var(--light-primary);
+    background-color: hsl(var(--dark-primary));
+    border: 2px solid hsl(var(--light-primary));
     cursor: pointer;
 
     svg {
       width: 34px;
       height: auto;
-      color: var(--light-seco);
+      color: hsl(var(--light-secondary));
       animation: bounce 3s infinite;
       animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       transform: translateY(-10px);

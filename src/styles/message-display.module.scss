@@ -15,8 +15,9 @@
     padding: 1rem 2rem;
     font-size: 1.5rem;
     line-height: 1.6;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 2px solid white;
+    background-color: hsl(var(--dark-secondary), 0.5);
+    border: 2px solid hsl(var(--light-primary));
+
     border-radius: 1rem;
     width: 100%;
     max-width: 30ch;

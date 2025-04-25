@@ -3,13 +3,12 @@ import { useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 import { random } from "maath";
-import { COLORS } from "../constants";
 
 const StarField = () => {
   const ref = useRef<THREE.Points>(null);
 
-  // Generate random star positions
-  const [positions] = useMemo(() => {
+  // Generate random star positions and colors
+  const [positions, colors] = useMemo(() => {
     const positions = new Float32Array(1000 * 3);
     const colors = new Float32Array(1000 * 3);
 
@@ -17,10 +16,12 @@ const StarField = () => {
       // Random position in a sphere
       random.inSphere(positions, { radius: 1.5 });
 
-      // Random color with slight variation
-      colors[i] = 1; // R
-      colors[i + 1] = 1; // G
-      colors[i + 2] = 1; // B
+      // Random color from a color palette or random RGB values
+      // You could use COLORS object to select random colors from your palette
+      // Example with random RGB values:
+      colors[i] = Math.random(); // R
+      colors[i + 1] = Math.random(); // G
+      colors[i + 2] = Math.random(); // B
     }
 
     return [positions, colors];
@@ -34,10 +35,16 @@ const StarField = () => {
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
+      <Points
+        ref={ref}
+        positions={positions}
+        colors={colors}
+        stride={3}
+        frustumCulled={false}
+      >
         <PointMaterial
           transparent
-          color={COLORS.lightPrimary}
+          vertexColors
           size={0.002}
           sizeAttenuation={true}
           depthWrite={false}
