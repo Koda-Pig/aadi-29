@@ -1,4 +1,7 @@
+// import styles from "yet-another-react-lightbox/styles.css";
 import { Message } from "../types";
+import { Link } from "react-router-dom";
+import styles from "../styles/app.module.scss";
 
 export const messages: Message[] = [
   {
@@ -80,5 +83,21 @@ export const messages: Message[] = [
   {
     text: "Your mesmerizing eyes - deep pools of rich amber brown",
     scrollThreshold: 20000
+  },
+  {
+    scrollThreshold: 21000,
+    text: (
+      <>
+        <div className={styles.galleryLink}>
+          <Link to="/gallery">
+            <p>view gallery</p>
+          </Link>
+        </div>
+
+        <div className={styles.footer}>
+          <p>made with ❤️ by your 'ua</p>
+        </div>
+      </>
+    )
   }
 ];

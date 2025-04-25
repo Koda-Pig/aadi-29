@@ -1,4 +1,4 @@
 export interface Message {
-  text: string;
+  text: React.ReactNode;
   scrollThreshold: number;
 }

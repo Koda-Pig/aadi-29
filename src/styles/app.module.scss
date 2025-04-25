@@ -62,19 +62,9 @@
 }
 
 .galleryLink {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-
-  &.visible {
-    opacity: 1;
+  :has(button) {
+    pointer-events: all;
   }
-
   a {
     text-decoration: none;
     display: inline-block;

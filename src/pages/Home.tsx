@@ -1,39 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import MessageDisplay from "../components/MessageDisplay";
 import { motion } from "framer-motion";
 import { messages } from "../data/content";
 import styles from "../styles/app.module.scss";
 import { ArrowDown } from "lucide-react";
 import { PasswordProtection } from "../components/PasswordProtection";
-import { Link } from "react-router-dom";
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isFooterVisible, setIsFooterVisible] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsFooterVisible(entry.isIntersecting);
-      },
-      {
-        root: document.documentElement,
-        rootMargin: "0px",
-        threshold: 0.1
-      }
-    );
-
-    if (bottomRef.current) {
-      observer.observe(bottomRef.current);
-    }
-
-    return () => {
-      if (bottomRef.current) {
-        observer.unobserve(bottomRef.current);
-      }
-    };
-  }, []);
 
   if (!isAuthenticated) {
     return (
@@ -48,7 +22,7 @@ export default function Home() {
         <div
           className={styles.scrollable_container}
           style={{
-            minHeight: messages.length * window.innerHeight * 1.5
+            minHeight: messages.length * window.innerHeight * 1.3
           }}
         >
           {/* Initial message */}
@@ -79,35 +53,6 @@ export default function Home() {
           {messages.map((message) => (
             <MessageDisplay key={message.scrollThreshold} message={message} />
           ))}
-
-          {/* Bottom detection element */}
-          <div
-            ref={bottomRef}
-            style={{
-              height: "1px",
-              width: "100%",
-              position: "absolute",
-              bottom: "0"
-            }}
-          />
-
-          <div
-            className={`${styles.galleryLink} ${
-              isFooterVisible ? styles.visible : ""
-            }`}
-          >
-            <Link to="/gallery">
-              <p>view gallery</p>
-            </Link>
-          </div>
-
-          <div
-            className={`${styles.footer} ${
-              isFooterVisible ? styles.visible : ""
-            }`}
-          >
-            <p>made with ❤️ by your 'ua</p>
-          </div>
         </div>
       </>
     </>

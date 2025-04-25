@@ -26,7 +26,7 @@ const MessageDisplay = ({ message }: { message: Message }) => {
       }}
       className={styles.message_display}
     >
-      <p>{message.text}</p>
+      {typeof message.text === "string" ? <p>{message.text}</p> : message.text}
     </motion.div>
   );
 };
