@@ -60,3 +60,4 @@ deployed here: https://happy-birthday-dila.netlify.app/
 ### TODO:
 
 1. add back password cookie storage
+2. fix height on mobile, not enough space.

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import MessageDisplay from "../components/MessageDisplay";
 import { motion } from "framer-motion";
 import { messages } from "../data/content";
@@ -10,19 +10,29 @@ import { Link } from "react-router-dom";
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.scrollY;
-      const clientHeight = document.documentElement.clientHeight;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFooterVisible(entry.isIntersecting);
+      },
+      {
+        root: document.documentElement,
+        rootMargin: "0px",
+        threshold: 0.1
+      }
+    );
 
-      // Show footer when we're near the bottom (within 100px)
-      setIsFooterVisible(scrollHeight - scrollTop - clientHeight < 100);
+    if (bottomRef.current) {
+      observer.observe(bottomRef.current);
+    }
+
+    return () => {
+      if (bottomRef.current) {
+        observer.unobserve(bottomRef.current);
+      }
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (!isAuthenticated) {
@@ -39,7 +49,7 @@ export default function Home() {
           className={styles.scrollable_container}
           style={{
             minHeight:
-              messages.length * window.innerHeight + window.innerHeight * 3
+              messages.length * window.innerHeight + window.innerHeight * 2
           }}
         >
           {/* Initial message */}
@@ -70,6 +80,17 @@ export default function Home() {
           {messages.map((message) => (
             <MessageDisplay key={message.scrollThreshold} message={message} />
           ))}
+
+          {/* Bottom detection element */}
+          <div
+            ref={bottomRef}
+            style={{
+              height: "1px",
+              width: "100%",
+              position: "absolute",
+              bottom: "0"
+            }}
+          />
 
           <div
             className={`${styles.galleryLink} ${
