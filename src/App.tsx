@@ -29,7 +29,7 @@ function App() {
           className={styles.initial_message}
         >
           <div>
-            <h1>Happy Birthday!</h1>
+            <h1>happy birthday dearest 'dila 🤎</h1>
             <p>Scroll to explore our universe</p>
           </div>
         </motion.div>
