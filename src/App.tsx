@@ -16,8 +16,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const authCookie = Cookies.get("celium_auth");
-    if (authCookie === process.env.NEXT_PUBLIC_PASS) {
+    const authCookie = Cookies.get("aadi-29_auth");
+    if (authCookie === import.meta.env.NEXT_PUBLIC_PASS) {
       setIsAuthenticated(true);
     }
     setIsLoading(false);

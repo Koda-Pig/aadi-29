@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { createHash } from "crypto";
 import Cookies from "js-cookie";
 
 interface PasswordProtectionProps {
   onAuthenticated: () => void;
 }
 
-const COOKIE_NAME = "celium_auth";
+const COOKIE_NAME = "aadi-29_auth";
 const COOKIE_EXPIRY = 1 / 48; // 30 minutes in days
 
 export function PasswordProtection({
@@ -15,12 +14,22 @@ export function PasswordProtection({
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const hash = createHash("md5").update(password).digest("hex");
-    if (hash === process.env.NEXT_PUBLIC_PASS) {
+    // Create a TextEncoder to convert the password to bytes
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+
+    // Use Web Crypto API to create a hash
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+
+    if (hashHex === process.env.NEXT_PUBLIC_PASS) {
       // Set cookie to expire in 30 minutes
-      Cookies.set(COOKIE_NAME, hash, {
+      Cookies.set(COOKIE_NAME, hashHex, {
         expires: COOKIE_EXPIRY,
         sameSite: "Strict",
         secure: process.env.NODE_ENV === "production"
