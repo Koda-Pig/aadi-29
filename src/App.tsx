@@ -24,7 +24,7 @@ function App() {
       <div
         className={styles.scrollable_container}
         style={{
-          minHeight: messages[messages.length - 1].scrollThreshold + 1000
+          minHeight: `${messages.length * 100 + 100}vh`
         }}
       >
         {/* Initial message */}
